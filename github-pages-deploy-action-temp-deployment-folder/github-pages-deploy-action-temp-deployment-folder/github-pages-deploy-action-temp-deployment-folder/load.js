@@ -31,7 +31,7 @@ function fillPixel(x, y, r, g, b, a) {
         }
     });
 
-    let game = instance.exports.init(document.documentElement.clientWidth, document.documentElement.clientHeight, 15);
+    let game = instance.exports.init(document.documentElement.clientWidth, document.documentElement.clientHeight, 30);
 
     instance.exports.draw(game);
     window.setInterval(
@@ -40,7 +40,7 @@ function fillPixel(x, y, r, g, b, a) {
                 instance.exports.reset(game);
                 instance.exports.draw(game);
             }
-        ), 5000);
+        ), 10000);
 
 
 })();
