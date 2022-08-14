@@ -40,7 +40,7 @@ function fillPixel(x, y, r, g, b, a) {
                 instance.exports.reset(game);
                 instance.exports.draw(game);
             }
-        ), 10000);
+        ), 5000);
 
 
 })();
