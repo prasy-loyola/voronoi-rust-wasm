@@ -105,11 +105,11 @@ pub extern "C" fn draw(game: *mut Game) {
         fill_circle(
             game.seeds.as_ref().expect("Failed").get(i).unwrap().x,
             game.seeds.as_ref().expect("fail").get(i).unwrap().y,
-            5,
-            250,
+            4,
             0,
             0,
-            0255,
+            0,
+            255,
         );
     }
 }
