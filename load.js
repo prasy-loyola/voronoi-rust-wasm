@@ -1,6 +1,7 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-
+canvas.height = document.documentElement.clientHeight;
+canvas.width = document.documentElement.clientWidth ;
 function getHexColor(r, g, b, a) {
     let toHex = (n) => Number(n).toString(16).padStart(2, "0");
     return "#" + [r, g, b, a].map(v => toHex(v)).join("");
@@ -30,7 +31,7 @@ function fillPixel(x, y, r, g, b, a) {
         }
     });
 
-    let game = instance.exports.init(canvas.clientWidth, canvas.clientHeight, 30);
+    let game = instance.exports.init(document.documentElement.clientWidth, document.documentElement.clientHeight, 30);
 
     instance.exports.draw(game);
     window.setInterval(
@@ -39,7 +40,7 @@ function fillPixel(x, y, r, g, b, a) {
                 instance.exports.reset(game);
                 instance.exports.draw(game);
             }
-        ), 3000);
+        ), 10000);
 
 
 })();
