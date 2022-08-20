@@ -30,17 +30,23 @@ function fillPixel(x, y, r, g, b, a) {
             "alert": alert,
         }
     });
+    let no_of_seeds = 15;
 
-    let game = instance.exports.init(document.documentElement.clientWidth, document.documentElement.clientHeight, 15);
+    let game = instance.exports.init(document.documentElement.clientWidth, document.documentElement.clientHeight, no_of_seeds);
 
-    instance.exports.draw(game);
+    let i = 1;
+    instance.exports.draw(game,i);
     window.setInterval(
         () => window.requestAnimationFrame(
             () => {
-                instance.exports.reset(game);
-                instance.exports.draw(game);
+                i++;
+                if(i > no_of_seeds){
+                    i = 1;
+                    instance.exports.reset(game);
+                }
+                instance.exports.draw(game, i);
             }
-        ), 5000);
+        ), 100);
 
 
 })();

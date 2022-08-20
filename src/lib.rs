@@ -48,12 +48,14 @@ impl Game {
         self.seeds = Some(seeds);
     }
 
-    fn render(&self) {
+    fn render(&self, mut no_of_seeds: u32) {
+
+        no_of_seeds = if no_of_seeds > self.no_of_seeds || no_of_seeds < 1 {self.no_of_seeds} else {no_of_seeds};
         for x in 0..self.width {
             for y in 0..self.height {
                 let mut point = &self.seeds.as_ref().expect("test")[0];
 
-                for i in 1..self.no_of_seeds {
+                for i in 1..no_of_seeds {
                     let curr_point = &self.seeds.as_ref().expect("test")[i as usize];
                     if sqrt_distance(x as i32, y as i32, point.x, point.y)
                         > sqrt_distance(x as i32, y as i32, curr_point.x, curr_point.y)
@@ -98,10 +100,10 @@ fn sqrt_distance(x1: i32, y1: i32, x2: i32, y2: i32) -> i32 {
 }
 
 #[no_mangle]
-pub extern "C" fn draw(game: *mut Game) {
+pub extern "C" fn draw(game: *mut Game, no_of_seeds: u32) {
     let game = unsafe { &mut *game };
-    game.render();
-    for i in 0..game.no_of_seeds as usize {
+    game.render(no_of_seeds);
+    for i in 0..no_of_seeds as usize {
         fill_circle(
             game.seeds.as_ref().expect("Failed").get(i).unwrap().x,
             game.seeds.as_ref().expect("fail").get(i).unwrap().y,
